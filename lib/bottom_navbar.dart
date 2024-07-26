@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
   int curNdx = 0;
   List<Map> pages = [
     {
-      "title": Column(
+      "title": const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("Welcome Back",
@@ -41,9 +41,9 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               // TODO: navigate to calendar page
             },
-            icon: Icon(Icons.calendar_month)),
+            icon: const Icon(Icons.calendar_month)),
         CircleAvatar(
-            backgroundColor: Colors.grey[300], child: Icon(Icons.person))
+            backgroundColor: Colors.grey[300], child: const Icon(Icons.person))
       ]
     }
   ];
@@ -58,16 +58,16 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: curNdx,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          const BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
-              icon: Container(
+              icon: SizedBox(
                 width: 30,
                 child: Image.asset("lib/icons/to_do_list.png"),
               ),
               label: "Templates"),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: Icon(Icons.calendar_month), label: "Reminders"),
-          BottomNavigationBarItem(icon: Icon(Icons.person_2), label: "Profile"),
+          const BottomNavigationBarItem(icon: Icon(Icons.person_2), label: "Profile"),
         ],
       ),
     );

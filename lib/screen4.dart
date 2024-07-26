@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class Screen3 extends StatefulWidget {
-  const Screen3({super.key});
+class Screen4 extends StatefulWidget {
+  const Screen4({super.key});
 
   @override
-  State<Screen3> createState() {
-    return Screen3State();
+  State<Screen4> createState() {
+    return Screen4State();
   }
 }
 
-class Screen3State extends State<Screen3> {
+class Screen4State extends State<Screen4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Reminders",
+          "My Profile",
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
         ),
         actions: [

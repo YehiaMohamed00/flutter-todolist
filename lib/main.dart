@@ -1,124 +1,12 @@
-// import 'package:flutter/material.dart';
-// import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-
-// void main() => runApp(MyApp());
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Persistent Bottom Nav Bar Demo',
-//       theme: ThemeData(primarySwatch: Colors.blue),
-//       home: MainScreen(),
-//     );
-//   }
-// }
-
-// class MainScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return PersistentTabView(
-//       context,
-//       controller: PersistentTabController(initialIndex: 0),
-//       screens: _buildScreens(),
-//       items: _navBarsItems(),
-//       confineInSafeArea: true,
-//       backgroundColor: Colors.white,
-//       handleAndroidBackButtonPress: true,
-//       resizeToAvoidBottomInset: true,
-//       stateManagement: true,
-//       hideNavigationBarWhenKeyboardShows: true,
-//       decoration: NavBarDecoration(
-//         borderRadius: BorderRadius.circular(10.0),
-//         colorBehindNavBar: Colors.white,
-//       ),
-//       popAllScreensOnTapOfSelectedTab: true,
-//       popActionScreens: PopActionScreensType.all,
-//       itemAnimationProperties: ItemAnimationProperties(
-//         duration: Duration(milliseconds: 200),
-//         curve: Curves.ease,
-//       ),
-//       screenTransitionAnimation: ScreenTransitionAnimation(
-//         animateTabTransition: true,
-//         curve: Curves.ease,
-//         duration: Duration(milliseconds: 200),
-//       ),
-//       navBarStyle: NavBarStyle.style1,
-//     );
-//   }
-
-//   List<Widget> _buildScreens() {
-//     return [
-//       HomeScreen(),
-//       SearchScreen(),
-//       ProfileScreen(),
-//     ];
-//   }
-
-//   List<PersistentBottomNavBarItem> _navBarsItems() {
-//     return [
-//       PersistentBottomNavBarItem(
-//         icon: Icon(Icons.home),
-//         title: ("Home"),
-//         activeColorPrimary: Colors.blue,
-//         inactiveColorPrimary: Colors.grey,
-//       ),
-//       PersistentBottomNavBarItem(
-//         icon: Icon(Icons.search),
-//         title: ("Search"),
-//         activeColorPrimary: Colors.blue,
-//         inactiveColorPrimary: Colors.grey,
-//       ),
-//       PersistentBottomNavBarItem(
-//         icon: Icon(Icons.person),
-//         title: ("Profile"),
-//         activeColorPrimary: Colors.blue,
-//         inactiveColorPrimary: Colors.grey,
-//       ),
-//     ];
-//   }
-// }
-
-// class HomeScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Home')),
-//       body: Center(child: Text('Home Screen')),
-//     );
-//   }
-// }
-
-// class SearchScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Search')),
-//       body: Center(child: Text('Search Screen')),
-//     );
-//   }
-// }
-
-// class ProfileScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Profile')),
-//       body: Center(child: Text('Profile Screen')),
-//     );
-//   }
-// }
-
-//////////////////////////////////////////////////////////////////////////
-
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'screen1.dart';
 import 'screen2.dart';
 import 'screen3.dart';
+import 'screen4.dart';
 import 'package:flutter/cupertino.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -136,12 +24,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // A widget which will be started on application startup
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() {
     return HomePageState();
@@ -151,63 +41,81 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   PersistentTabController tabController =
       PersistentTabController(initialIndex: 0);
-  int curNdx = 0;
-  List<Map> pages = [
-    {
-      "title": Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Welcome Back",
-              style: TextStyle(fontSize: 14, color: Colors.grey)),
-          Text("Dear User"),
-        ],
-      ),
-      "actions": [
-        IconButton(
-            onPressed: () {
-              // TODO: navigate to calendar page
-            },
-            icon: Icon(Icons.calendar_month)),
-        CircleAvatar(
-            backgroundColor: Colors.grey[300], child: Icon(Icons.person))
-      ]
-    }
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  List<Widget> _buildScreens() {
-    return [Screen1(), Screen2(), Screen3()];
-  }
+  bool isProfileScreen = false;
 
   List<PersistentBottomNavBarItem> _navBarItems() {
     return [
-      PersistentBottomNavBarItem(icon: Icon(Icons.home)),
-      PersistentBottomNavBarItem(icon: Icon(Icons.search)),
-      PersistentBottomNavBarItem(icon: Icon(Icons.menu)),
+      PersistentBottomNavBarItem(
+        textStyle: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+        icon: const Icon(Icons.home),
+        title: "Home",
+        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorSecondary: Colors.white,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        textStyle: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+        icon: const Icon(Icons.ballot_rounded),
+        title: "Templates",
+        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorSecondary: Colors.white,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        textStyle: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+        icon: const Icon(Icons.calendar_month),
+        title: "Reminders",
+        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorSecondary: Colors.white,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        textStyle: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+        icon: const Icon(Icons.person),
+        title: "Profile",
+        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorSecondary: Colors.white,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
     ];
+  }
+
+  List<Widget> _screens() {
+    return [const Screen1(), const Screen2(), const Screen3(), const Screen4()];
   }
 
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
-      controller: tabController,
-      screens: _buildScreens(),
+      screens: _screens(),
       items: _navBarItems(),
-      handleAndroidBackButtonPress: true, // Default is true.
-      resizeToAvoidBottomInset:
-          true, // This needs to be true if you want to move up the screen on a non-scrollable screen when keyboard appears. Default is true.
-      stateManagement: true, // Default is true.
-      hideNavigationBarWhenKeyboardAppears: true,
-      padding: const EdgeInsets.only(top: 8),
-      backgroundColor: Colors.grey.shade900,
-      isVisible: true,
-      confineToSafeArea: true,
-      navBarHeight: kBottomNavigationBarHeight,
+      controller: tabController,
+      navBarHeight: 70,
+      navBarStyle: NavBarStyle.style7,
+      onItemSelected: (value) {
+        setState(() {
+          // print(value);
+          isProfileScreen = value == 3 ? true : false;
+        });
+      },
+      floatingActionButton: isProfileScreen
+          ? const SizedBox(
+              width: 0,
+              height: 0,
+            )
+          : Container(
+              padding: const EdgeInsets.all(15),
+              width: 100,
+              height: 100,
+              child: FittedBox(
+                child: FloatingActionButton(
+                  onPressed: () {},
+                  backgroundColor: CupertinoColors.activeBlue,
+                  shape: const CircleBorder(),
+                  child: const Icon(Icons.add, color: Colors.white),
+                ),
+              )),
     );
   }
 }
